@@ -15,7 +15,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -50,7 +49,7 @@ public class PropertyPlaceholderProvider {
 
         PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();
         ClassPathResource[] resources = new ClassPathResource[] {
-                new ClassPathResource("jndi.properties"),
+                new ClassPathResource("application.properties"),
         };
         if (props != null && props.size() > 0) {
             configurer.setProperties(props);

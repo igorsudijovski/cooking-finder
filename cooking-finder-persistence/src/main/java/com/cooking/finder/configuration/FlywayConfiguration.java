@@ -1,6 +1,6 @@
 package com.cooking.finder.configuration;
 
-import com.cooking.finder.services.CookingFinderServicesMarkerScanner;
+import com.cooking.finder.repository.CookingFinderRepositoryMarkerScanner;
 import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,7 @@ import javax.sql.DataSource;
  * Created by Igor on 15.10.2016.
  */
 @Configuration
-@ComponentScan(basePackageClasses = CookingFinderServicesMarkerScanner.class)
+@ComponentScan(basePackageClasses = CookingFinderRepositoryMarkerScanner.class)
 @Import(DataSourceProvider.class)
 public class FlywayConfiguration {
     

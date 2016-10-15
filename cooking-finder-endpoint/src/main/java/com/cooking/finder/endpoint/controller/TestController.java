@@ -28,19 +28,6 @@ public class TestController {
         TestModel testm = new TestModel();
         testm.setTest1("12312");
         testm.setTest2("asdfasdf");
-
-        Context ctx = new InitialContext();
-
-        DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/H2DB");
-
-        Connection con = ds.getConnection();
-        Statement stmt = con.createStatement();
-        stmt.execute("insert into t_user(username, password) values ('test','test1')");
-        ResultSet rs = stmt.executeQuery("select * from t_user");
-        while (rs.next()) {
-            System.out.println("asa");
-        }
-        System.out.println("test");
         return testm;
 
 

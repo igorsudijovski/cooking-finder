@@ -12,6 +12,7 @@
     <modules>
         <module>cooking-finder-persistence</module>
         <module>cooking-finder-endpoint</module>
+        <module>cooking-finder-services</module>
     </modules>
 
     <properties>

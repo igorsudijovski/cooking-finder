@@ -78,7 +78,7 @@
                                 'file:${project.baseUri}/${db.schema.location}/${db.schema.name.v.1.0}'\;
                                 RUNSCRIPT FROM 'file:${project.baseUri}/${db.schema.location}/${db.schema.name.v.1.1}'\;
                             </jdbcUrl>
-                            <packageName>com.cooking.finder.services.querydsl</packageName>
+                            <packageName>com.cooking.finder.repository.querydsl</packageName>
                             <targetFolder>${project.basedir}/target/generated-sources/java</targetFolder>
                         </configuration>
                     </execution>
