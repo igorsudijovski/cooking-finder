@@ -73,10 +73,12 @@ create table t_feed_feedback
 (
   user_id bigint not null,
   feedback_type_id bigint not null,
-  primary key(user_id, feedback_type_id)
+  feed_id bigint not null,
+  primary key(user_id, feedback_type_id, feed_id)
 );
 alter table t_feed_feedback add constraint FK_feed_feedback_user foreign key (user_id) references t_user(id);
 alter table t_feed_feedback add constraint FK_feed_feedback_feedback_type foreign key (feedback_type_id) references t_feedback_type(id);
+alter table t_feed_feedback add constraint FK_feed_feedback_feed foreign key (feed_id) references t_feed(id);
 
 
 alter table t_user add constraint UK_user_username unique(username);
