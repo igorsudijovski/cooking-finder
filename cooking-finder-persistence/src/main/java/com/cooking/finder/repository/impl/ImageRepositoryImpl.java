@@ -3,12 +3,11 @@ package com.cooking.finder.repository.impl;
 import com.cooking.finder.repository.interfaces.ImageRepository;
 import com.cooking.finder.repository.model.Image;
 import com.cooking.finder.repository.projection.ImageMappingProjection;
-import com.cooking.finder.repository.projection.UserMappingProjection;
 import com.cooking.finder.repository.querydsl.QTImage;
-import com.cooking.finder.repository.querydsl.QTUser;
 import com.mysema.query.sql.SQLQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jdbc.query.QueryDslJdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -16,6 +15,7 @@ import java.util.List;
 /**
  * Created by Igor on 15.10.2016.
  */
+@Repository
 public class ImageRepositoryImpl implements ImageRepository {
 
     private QueryDslJdbcTemplate template;
@@ -59,5 +59,13 @@ public class ImageRepositoryImpl implements ImageRepository {
         .set(qtImage.description, model.getDescription()).execute());
 
         return updated > 0;
+    }
+
+    @Override
+    public boolean exists(Long id) {
+        QTImage qtImage = QTImage.tImage;
+        SQLQuery query = template.newSqlQuery().from(qtImage)
+                .where(qtImage.id.eq(id));
+        return template.exists(query);
     }
 }

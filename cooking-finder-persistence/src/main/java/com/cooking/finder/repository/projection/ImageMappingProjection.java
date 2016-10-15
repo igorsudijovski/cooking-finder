@@ -1,6 +1,7 @@
 package com.cooking.finder.repository.projection;
 
 import com.cooking.finder.repository.model.Image;
+import com.cooking.finder.repository.projection.common.ImageCommonProjection;
 import com.cooking.finder.repository.querydsl.QTImage;
 import com.mysema.query.Tuple;
 import com.mysema.query.types.MappingProjection;
@@ -19,16 +20,6 @@ public class ImageMappingProjection extends MappingProjection<Image> {
 
     @Override
     protected Image map(Tuple tuple) {
-        QTImage qtImage = QTImage.tImage;
-        Image image = new Image();
-        image.setId(tuple.get(qtImage.id));
-        image.setName(tuple.get(qtImage.name));
-        image.setDescription(tuple.get(qtImage.description));
-        image.setFileName(tuple.get(qtImage.fileName));
-        image.setFilePath(tuple.get(qtImage.filePath));
-        image.setImageType(tuple.get(qtImage.imageType));
-        image.setWidth(tuple.get(qtImage.width));
-        image.setHeight(tuple.get(qtImage.height));
-        return image;
+        return ImageCommonProjection.map(tuple);
     }
 }
