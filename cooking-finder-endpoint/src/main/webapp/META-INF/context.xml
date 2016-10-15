@@ -1,3 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/">
+<!DOCTYPE xml>
+<Context>
+    <Resource name="jdbc/H2DB" auth="Container" type="javax.sql.DataSource" maxActive="100" maxIdle="30" maxWait="10000"
+              username="sa" password="" driverClassName="org.h2.Driver" url="jdbc:h2:file:c:/local/db/cooking-new2;AUTO_SERVER=TRUE"
+              connectionProperties="useUnicode=yes;characterEncoding=utf8;"/>
+    <Parameter name="db.dataSource" value="java:/comp/env/jdbc/H2DB"/>
 </Context>

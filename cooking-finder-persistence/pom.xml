@@ -11,5 +11,88 @@
     <name>Cooking finder persistence</name>
     <artifactId>cooking-finder-persistence</artifactId>
 
+    <properties>
+        <db.schema.location>src/main/resources/db/migration</db.schema.location>
+        <db.schema.name.v.1.0>V0_0_1__drop.sql</db.schema.name.v.1.0>
+        <db.schema.name.v.1.1>V0_0_2__create.sql</db.schema.name.v.1.1>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mysema.querydsl</groupId>
+            <artifactId>querydsl-sql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.mysema.querydsl</groupId>
+                <artifactId>querydsl-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>create-querydsl-main</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>export</goal>
+                        </goals>
+                        <configuration>
+                            <jdbcDriver>org.h2.Driver</jdbcDriver>
+                            <jdbcUrl>jdbc:h2:mem:test;MODE=MYSQL;DB_CLOSE_ON_EXIT=FALSE;INIT=RUNSCRIPT FROM
+                                'file:${project.baseUri}/${db.schema.location}/${db.schema.name.v.1.0}'\;
+                                RUNSCRIPT FROM 'file:${project.baseUri}/${db.schema.location}/${db.schema.name.v.1.1}'\;
+                            </jdbcUrl>
+                            <packageName>com.cooking.finder.services.querydsl</packageName>
+                            <targetFolder>${project.basedir}/target/generated-sources/java</targetFolder>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>${h2-connector.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration scan="true" scanPeriod="10 minutes">
+
+    <include resource="logback-${cooking.finder.log.mode}.xml" />
+
+    <logger name="com.cooking" level="${cooking.finder.log.level:-DEBUG}"/>
+    <logger name="org.springframework" level="${cooking.finder.log.level:-DEBUG}"/>
+
+    <root level="${cooking.finder.log.level:-DEBUG}">
+        <appender-ref ref="log"/>
+    </root>
+</configuration>

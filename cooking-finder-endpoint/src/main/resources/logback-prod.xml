@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<included>
+
+    <appender name="log" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <key>cooking.finder.log.module</key>
+            <defaultValue>cooking-finder</defaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE-${cooking.finder.log.module}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${cooking.finder.log.server.dir}/${cooking.finder.log.module}.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>${cooking.finder.log.server.dir}/${cooking.finder.log.module}.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>%date | %-15.15t | %-5p | %-30.30c{1} | %m%n</pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+</included>

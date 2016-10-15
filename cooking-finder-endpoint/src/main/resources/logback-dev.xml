@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<included>
+
+    <appender name="log" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date | %-15.15t | %-5p | %-30.30c{1} | %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${cooking.finder.log.level:-DEBUG}</level>
+        </filter>
+    </appender>
+
+</included>
