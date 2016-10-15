@@ -20,7 +20,6 @@ import java.util.List;
  * Created by Igor on 15.10.2016.
  */
 @Repository
-@NoArgsConstructor
 public class UserRepositoryImpl implements UserRepository {
 
     private QueryDslJdbcTemplate template;

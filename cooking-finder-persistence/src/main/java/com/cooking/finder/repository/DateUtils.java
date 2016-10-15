@@ -12,4 +12,8 @@ public final class DateUtils {
     public static Timestamp convertJodaDateToTimeStamp(DateTime dateTime) {
         return dateTime != null ?  new Timestamp(dateTime.getMillis()) : null;
     }
+
+    public static DateTime convertTimeStampToDate(Timestamp time) {
+        return time != null ? new DateTime(time.getTime()) : null;
+    }
 }
