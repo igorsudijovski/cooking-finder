@@ -15,7 +15,6 @@ import javax.sql.DataSource;
  */
 @Configuration
 @ComponentScan(basePackageClasses = CookingFinderRepositoryMarkerScanner.class)
-@Import(DataSourceProvider.class)
 public class FlywayConfiguration {
     
     @Autowired

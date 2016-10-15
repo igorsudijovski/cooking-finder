@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration scan="true" scanPeriod="10 minutes">
+
+    <appender name="log" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date | %-15.15t | %-5p | %-30.30c{1} | %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <logger name="com.cooking" level="INFO"/>
+    <logger name="org.springframework" level="INFO"/>
+
+    <root level="INFO">
+        <appender-ref ref="log"/>
+    </root>
+</configuration>

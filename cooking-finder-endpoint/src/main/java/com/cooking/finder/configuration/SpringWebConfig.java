@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackageClasses = CookingFinderEndPointMarkerScanner.class)
-@Import(FlywayConfiguration.class)
+@Import(value = {FlywayConfiguration.class, DataSourceProvider.class})
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
     @Override

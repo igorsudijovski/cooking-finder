@@ -30,6 +30,8 @@
         <commons-validator.version>1.4.1</commons-validator.version>
         <flyway-core.version>3.2.1</flyway-core.version>
         <h2.version>1.3.176</h2.version>
+        <hamcrest.version>1.3</hamcrest.version>
+        <maven-surefire-plugin.version>2.18</maven-surefire-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -85,6 +87,11 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jdbc-core</artifactId>
+                <version>1.1.0.RELEASE</version>
             </dependency>
 
             <!-- java servlet -->
@@ -161,6 +168,28 @@
                 <artifactId>flyway-core</artifactId>
                 <version>${flyway-core.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>${hamcrest.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-library</artifactId>
+                <version>${hamcrest.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -209,6 +238,22 @@
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <packagingExcludes>META-INF/context.xml</packagingExcludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <useFile>false</useFile>
+                    <runOrder>random</runOrder>
+                    <systemProperties>
+                        <property>
+                            <!-- skip update check in tests -->
+                            <name>org.terracotta.quartz.skipUpdateCheck</name>
+                            <value>true</value>
+                        </property>
+                    </systemProperties>
                 </configuration>
             </plugin>
         </plugins>
